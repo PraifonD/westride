@@ -1,0 +1,364 @@
+@font-face {
+    font-family: "prompt";
+    src: url(./Sources/font/Prompt/Prompt-Medium.ttf);
+}
+@font-face {
+    font-family: "prompt";
+    src: url(./Sources/font/Prompt/Prompt-SemiBold.ttf);
+    font-weight: bold;
+}
+:root {
+    /* color */
+    --color-pri: rgb(37, 40, 41);
+    --color-sec: rgb(241, 241, 232);
+    --color-accent: rgb(1, 91, 72);
+}
+
+/* General Styling */
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    padding: 1em;
+}
+[class*='black']{
+    background-color: var(--color-pri);
+    color: var(--color-sec);
+}
+[class*='black'] * {
+    fill: var(--color-sec);
+}
+[class*='white']{
+    background-color: var(--color-sec);
+    color: var(--color-pri);
+}
+[class*='white'] * {
+    fill: var(--color-pri);
+}
+[class*='white']:hover * {
+    color: var(--color-sec);
+    fill: var(--color-sec);
+}
+
+
+
+[class*='overline']::before {
+    content: "";
+    display: block;
+    width: 2.5em;
+    height: 0.15em;
+    margin-bottom: 0.4em;
+    background-color: var(--color-pri);
+}
+.overline-w::before {
+    background-color: var(--color-sec);
+}
+
+.center {
+    align-self: center;
+}
+.flex-column {
+    flex-direction: column;
+}
+.pc-50 {
+    margin-right:50%;
+}
+.quote::before {
+    content: " ";
+    background: url(./Sources/icon/format_quote_FILL1_wght400_GRAD0_opsz48.svg);
+    background-size: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+body {
+    background-color: var(--color-sec);
+    color: var(--color-pri);
+    font-family: "prompt", sans-serif;
+    margin: 0px;
+}
+h1 {
+    font-size: 4em;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    line-height: 1em;
+    text-transform: uppercase;
+    margin: 0px;
+}
+h2 {
+    font-size: 3em;
+    line-height: 1em;
+    text-transform: uppercase;
+    margin: 0px;
+}
+h3 {
+    font-size: 2em;
+    line-height: 1.2em;
+    text-transform: uppercase;
+    margin: 0px;
+}
+
+
+a {
+    color: var(--color-pri);
+    fill: var(--color-pri);
+    text-decoration: none;   
+    cursor: pointer;
+}
+a:hover {
+    color: var(--color-accent); 
+}
+
+button {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    width: fit-content;
+    margin: 0.6em;
+    cursor: pointer;
+    transition: all ease-in-out 0.1s;
+    display: flex;
+    align-items: center;
+}
+button:first-of-type{
+    margin-left: 0px;
+}
+button:last-of-type {
+    margin-right: 0px;
+}
+button[class^='btn-pri'] {
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 1em 2em;  
+}
+button[class^='btn-pri']:hover ,.scale-110:hover {
+    scale: 110%;
+    transition: all ease-in-out 0.1s;
+}
+button[class*='pri']:hover {
+    background-color: var(--color-accent);
+}
+
+button[class*='pri-white']:hover {
+    color: var(--color-sec);
+    fill: var(--color-sec);
+}
+button[class^='btn-sec'] {
+    background-color: transparent;
+    padding: 0.7em 2em 0.5em 2em;
+    border: 2px solid var(--color-pri);
+    color: var(--color-pri);
+}
+button[class^='btn-sec']:hover {
+    background-color: var(--color-pri);
+    color: var(--color-sec);
+    border: 2px solid var(--color-pri);
+}
+button[class*='circle']  {
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button[class*='circle-s'] {
+    width: 60px;
+    height: 60px;
+}
+button[class*='circle-m'] {
+    width: 120px;
+    height: 120px;
+}
+button[class*='circle-l'] {
+    width: 320px;
+    height: 320px;
+}
+
+[class^='btn-scroll-']{
+    content :"ss";
+}
+.btn-knowmore {
+    color: var(--color-pri);
+    border:none;
+    background-color: transparent;
+    padding: 0px;
+}
+.btn-knowmore svg {
+    background-color: var(--color-pri);
+    fill: var(--color-sec);
+    border-radius: 50%;
+    transform: scale(50%);
+}
+.btn-knowmore:hover {
+    text-decoration: underline;
+}
+
+details {
+    padding: 1em 0px;
+    cursor: pointer;
+}
+details:not(:last-child) {
+    border-bottom: 1px solid var(--color-sec);
+}
+summary {
+    list-style: none;
+    font-size: 1.5em;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+
+/* Sections Styling */
+nav {
+    background-color: var(--color-sec) ;
+
+    width: 100%;
+    height: 80px;
+    margin: 0px;
+    padding: 0px 32px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+nav a {
+    padding: 1em;
+}
+#nav-top {
+    border-bottom: 1px solid var(--color-pri);
+}
+#nav-footer {
+    border-top: 1px solid ;
+}
+
+section {
+    width: 100%;
+}
+body > section {
+    display: flex;  
+    justify-content: center;  
+}
+section section {
+    padding: 1.2em 0em;
+}
+.container {
+    width: 100%;
+    max-width: 1120px;
+    padding: 4em 2em;
+    display: flex;
+    flex-wrap: nowrap;
+}
+.container div {
+    width: 100%;
+}
+
+.social-link {
+    margin: 8px 0px;
+}
+.social-link a{
+    margin: 12px;
+    padding: 4px;
+}
+.social-link a:first-child {
+    margin-left: 0px;
+    padding-left: 0px;
+}
+.social-link a svg {
+    fill: var(--color-pri);
+}
+.social-link a svg:hover {
+    fill: var(--color-accent);
+}
+
+#intro {
+    min-height: 90vh;
+}
+#intro-l {
+    flex: 2;
+}
+#intro-r {
+    flex: 1;
+    position: relative;
+}
+#intro-r img {
+    position: absolute;
+    left: -200px;
+    z-index: -10;
+    height: 100%;
+    width: 120%;
+    object-fit: contain;
+
+}
+
+#service {
+    align-items: flex-start;
+}
+
+.portfolio-item {
+    border: 1px solid var(--color-pri);
+    padding: 0;
+    margin-bottom: 3em;
+    height: 450px;
+
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.portfolio-item article {
+    width: 40%;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.portfolio-item div {
+    width: 60%;
+}
+.portfolio-item div img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#aboutme .carousal {
+    display: flex;
+    flex-direction: row;
+}
+#aboutme .carousal article{
+    width: 50%;
+    padding: 2em 4em;
+    padding-right: 0px;
+}
+#aboutme .carousal>div {
+    width: 40%;
+}
+#aboutme .carousal img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#aboutme .btn-nav, #aboutme .nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+#aboutme .nav {
+    justify-content: space-between;
+}
+#aboutme .btn-nav {
+    justify-content: flex-end;
+}
+
+#contact .container {
+    text-align: center;
+    padding: 12em 0em;
+}

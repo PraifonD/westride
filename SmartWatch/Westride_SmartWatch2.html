@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feature</title>
+
+    <style>
+        html, body, 
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        body {
+            height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #watch {
+            width: 230px;
+            height: 230px;
+            background-color: rgb(28, 28, 30);
+            border-radius: 20px;
+            color: #fff;
+        }
+        #watch-border {
+            width: 250px;
+            height: 250px;
+            background-color: #595959;
+            border-radius: 20px;
+        }
+        .dotted {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px white dotted;
+            display: flex;
+            flex-flow: column;
+        }
+        p {
+            margin: 4px;
+            text-transform: uppercase;
+        }
+        #time {
+            font-size: 2.2em;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body> 
+    <div id="watch-border">
+        <div id="watch">
+            <div class="dotted">
+                <p id="date"></p>
+                <p id="time"></p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    function updateTime() {
+        let date = document.querySelector('#date');
+        let time = document.querySelector('#time');
+
+        const weekDays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+        const months = ['jan', 'feb', 'mar', 'apr', 'may', 'june', 'july', 'aug', 'sept', 'oct', 'nov', 'dec'];
+        
+        let currentDate = new Date();
+            let currentYear = currentDate.getFullYear();
+            let currentMonth = months[currentDate.getMonth()];
+            let currentWeekDay = weekDays[currentDate.getDay()];
+            let currentDay = currentDate.getDate();
+            let currentHour = currentDate.getHours();
+            let currentMinute = currentDate.getMinutes();
+            let currentSeconds = currentDate.getSeconds();
+
+        //transform 1 to 01
+        currentHour = (currentHour < 10) ? `0${currentHour}` : currentHour;
+        currentMinute = (currentMinute < 10) ? `0${currentMinute}` : currentMinute;
+        currentSeconds = (currentSeconds < 10) ? `0${currentSeconds}` : currentSeconds;
+        
+        // concat date and time string
+        let dateString = `${currentWeekDay} ${currentDay} ${currentMonth} ${currentYear}`;
+        let timeString = `${currentHour}:${currentMinute}:${currentSeconds}`;
+    
+        //update
+        date.textContent = dateString;
+        time.textContent = timeString;
+    }
+
+    setInterval(function () {
+    updateTime()
+    }, 1000);
+
+</script>
+</html>

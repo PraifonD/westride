@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartWatch Showcase</title>
+
+    <style>
+        html * {
+            box-sizing: border-box;
+        }
+        html, body {
+            padding: 0;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        p {
+           color: rgb(116, 109, 109);
+        }
+        h1, h2, h3, h4 {
+            margin: 0.3em 0px ;
+        }
+        section {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 32px;
+            box-sizing: border-box;
+        }
+        #header-tab {
+            width: 100vw;
+            height: 80px;
+            margin: 0;
+            padding: 0;
+            background-color: #ea5b3d;
+            color: #fff;
+            align-items: center;
+        }
+        #header-tab h1 {
+            font-size: 20px;   
+            font-weight: 300;
+            margin: 0;
+        }
+        div [class*=wrapper] {
+            padding: 8px 22px;
+        }
+        .image-wrapper {
+            height: 300px;
+        }
+        #image-watch {
+            width: 300px;
+            height: 300px;
+            margin: auto;
+        }
+        .image-watch:not(:first-child) {
+            display: none;
+        }
+    
+        button {
+            width: 160px;
+            height: 42px;
+            border-radius: 10px;
+            box-shadow: none;
+            border: none;
+            cursor: pointer;
+            margin: 4px;
+        }
+        button.primary {
+            background-color: #ea5b3d;
+            color: #fff;
+        }s
+        button.primary:hover {
+            background-color: #af351d;
+        }
+        button.secondary {
+            background-color: #EFEFEF;
+        }
+        button.secondary:hover {
+            background-color: #eee8e5;
+        }
+        .color-option {
+            display: flex;
+            justify-items: flex-start;
+        }
+        .color {
+            width: 50px;
+            height: 40px;
+            border-radius: 8px;
+        }
+        #color-1 {
+            background-color: #000;
+        }
+        #color-2 {
+            background-color: #ca3d22; 
+        }
+        #color-3 {
+            background-color: #565681;
+        }
+        #color-4 {
+            background-color: #e9c7be; 
+        }
+    
+        @media only screen and (max-width: 520px) {
+            .content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section id="header-tab"><h1>WeStride Watch Shop</h1></section>
+    <section class="content">
+        <div class="image-wrapper">
+            <img id="image-watch" src="./src/black-watch.png"/>
+        </div>
+        <div>
+            <div class="title-wrapper">
+                <h2>WeStride-22 The Smartest Watch</h2>
+                <p>There is no one who loves pain itself who seeks after it and wants to have it, simply because it is pain...</p>
+            </div>
+            <div class="option-wrapper">
+                <h3>Select Color</h3>
+                <div class="color-option">
+                    <button id="color-1" class="color"></button>
+                    <button id="color-2" class="color"></button>
+                    <button id="color-3" class="color"></button>
+                    <button id="color-4" class="color"></button>
+                </div>
+            </div>
+            <div class="button-wrapper">
+                <button class="secondary">ADD TO CART</button>
+                <button class="primary">BUY</button>
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+    let color1 = document.getElementById('color-1');
+    let color2 = document.getElementById('color-2');
+    let color3 = document.getElementById('color-3');
+    let color4 = document.getElementById('color-4');
+    let img = document.getElementById('image-watch');
+    
+    color1.addEventListener ('click', function (){
+        img.src = "./src/black-watch.png";
+    });
+    color2.addEventListener ('click', function (){
+        img.src = "./src/orenge-watch.png";
+    });
+    color3.addEventListener ('click', function (){
+        img.src = "./src/purple-watch.png";
+    });
+    color4.addEventListener ('click', function (){
+        img.src = "./src/pink-watch.png";
+    });
+
+</script>
+</html>
+
+
+

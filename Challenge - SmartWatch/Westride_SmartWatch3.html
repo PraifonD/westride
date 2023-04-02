@@ -5,25 +5,187 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Form</title>
+
+    <style>
+        body {
+           background-color: rgb(241, 241, 241);
+        }
+        #creditcard {
+            display: flex;
+            flex-flow: wrap;
+            justify-content: center;
+            gap: 21px;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+        div[id^="card"] {
+            width: 360px;
+            height: 220px;
+            box-sizing: border-box;
+            border-radius: 12px;
+            background-image: linear-gradient(to right bottom, #040382, #50bdfc, #040382);
+            box-shadow: 2px 2px 2px #33363da0;
+            color: #fff;
+        }
+        h1, h2, h3, h4 {
+            text-shadow: 0.1em 0.1em  #33363da0;
+            margin: 2px;
+        }
+        h3 , h4 {
+            font-weight: 300;
+        }
+        h3 {
+            letter-spacing: 0.15em;
+            font-size: 16px;
+        }
+        h4 {
+            letter-spacing: 0.3em;
+        }
+        p {
+            font-size: 11px;
+        }
+        #card-front {
+            padding: 21px;
+        }
+        #card-front div {
+            display: flex;
+            align-items: center;
+        }
+        #title {
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+        #arrow {
+            width: 0; 
+            height: 0; 
+            border-top: 16px solid transparent;
+            border-bottom: 16px solid transparent; 
+            border-right:16px solid white; 
+            margin-right: 12px;
+        }
+        div:has(#display-card-number) {
+            justify-content: center;
+        }
+        #date {
+            justify-content: center;
+        }
+        #date div {
+            width: 40px;
+            overflow: hidden;
+        }
+        #date div:last-of-type p {
+            font-size: 14px;
+            margin-left: 8px;
+        }
+        #buttom {
+            justify-content: space-between;
+            align-items: flex-end;
+            position: relative;
+        }
+        #symbol {
+            position: relative;
+            background-color: #000;
+            margin: -8px;
+        }
+        #symbol div {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -12px;
+        }
+        #red {
+            background-color: red;
+            right: 21px;
+            z-index: 3;
+        }
+        #orange {
+            background-color: orange; 
+            right: 0px;
+        }
+    
+        #black {
+            width: 100%;
+            height: 40px;
+            background-color: #000;
+            margin-top: 24px;
+        }
+        #mark {
+            display: flex;
+            margin-top: 8px;
+            align-items: center;
+        }
+        #line {
+            width: 80%;
+            background-color: #ccc;
+        }
+        #mark hr {
+            margin: 2px 0px;
+            border: 0.2px solid grey;
+        }
+        #display-cvc-code-wrapper {
+            width: 40px;
+            height:26px;
+            background-color: #fff;
+            color:#000;
+            overflow: hidden;
+        }
+        #display-cvc-code {
+            font-size: 14px;
+            margin: 6px;
+        }
+        .details {
+            padding: 0px 21px;
+        }
+    
+        form {
+            width: 360px;
+            margin: 40px auto;
+        }
+        
+        input , label {
+            display: block;
+            width: 100%;
+            color: darkgray;
+        }
+        input {
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid darkgrey;
+            height: 40px;
+            margin-bottom: 22px;
+        }
+        button {
+            font-family: serif;
+            font-size: 18px;
+            width: 100%;
+            height: 54px;
+            border-radius: 8px;
+            background-color: #5d90e2;
+            color: #fff;
+            border: none;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
     <div id="creditcard">
         <div id="card-front">
             <div id="title">
-                <h2><i>Bank Name</i></h2>
+                <h2 id="display-bank-name"><i>Bank Name</i></h2>
                 <h2><i>Logo Here</i></h2>
             </div>
             <div id="chip">
                 <div id="arrow"></div>
                 <div><img style="height:64px;" src="https://img.icons8.com/fluency/344/sim-card-chip.png"></div>
             </div>
-            <div id="number"><h4>0123 2345 578 9000</h4></div>
+            <div><h4 id="display-card-number">0123 2345 578 9000</h4></div>
             <div id="date">
                 <div><p>VALID <br>DATE</p></div>
-                <div><p>08/21</p></div>
+                <div><p id="display-date">08/21</p></div>
             </div>
             <div id="buttom">
-                <div><h3>OWNER NAME</h3></div>
+                <div><h3 id="display-owner-name">OWNER NAME</h3></div>
                 <div id="symbol">
                     <div id="red"></div>
                     <div id="orange"></div>
@@ -34,7 +196,7 @@
             <div id="black"></div>
             <div id="mark">
                 <div id="line"><hr><hr><hr><hr><hr><hr><hr><hr></div>
-                <div id="cvc-box"><p>535</p></div>
+                <div id="display-cvc-code-wrapper"><p id="display-cvc-code">535</p></div>
             </div>
             <p class="details">Lorem ipsum dolor sit amet, consectetur adipiscing elit,ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </p>
             <p class="details">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </p>
@@ -43,173 +205,48 @@
     <div id="form-wrapper">
         <form>
             <label for="owner-name">Owner Name</label>
-            <input id="owner-name" type="text" name="owner-name">
+            <input id="owner-name" type="text" pattern="[A-Za-z]+" name="owner-name" required>
             <label for="bank-name">Bank Name</label>
-            <input id="bank-name" type="text" name="bank-name">
+            <input id="bank-name" type="text" pattern="[A-Za-z]+" name="bank-name" required>
             <label for="card-number">Card Number</label>
-            <input id="card-number" type="text" name="card-number">
+            <input id="card-number" type="text" pattern="^[0-9]{13,16}$" name="card-number" required>
             <label for="date">MM / YY</label>
-            <input id="date" type="text" name="date">
+            <input id="date" type="text" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" name="date" required>
             <label for="cvc-code">CVC Code</label>
-            <input id="cvc-code" type="text" name="cvc-code">
+            <input id="cvc-code" type="text" pattern="^[0-9]{3,4}$" name="cvc-code" required>
             <button>PAY NOW</button>
         </form>
     </div>
 </body>
 </html>
 
-<style>
-    body {
-       background-color: rgb(241, 241, 241);
-    }
-    #creditcard {
-        display: flex;
-        flex-flow: wrap;
-        justify-content: center;
-        gap: 21px;
-        font-family:Arial, Helvetica, sans-serif;
-    }
-    div[id^="card"] {
-        width: 360px;
-        height: 220px;
-        box-sizing: border-box;
-        border-radius: 12px;
-        background-image: linear-gradient(to right bottom, #040382, #50bdfc, #040382);
-        box-shadow: 2px 2px 2px #33363da0;
-        color: #fff;
-    }
-    h1, h2, h3, h4 {
-        text-shadow: 0.1em 0.1em  #33363da0;
-        margin: 2px;
-    }
-    h3 , h4 {
-        font-weight: 300;
-    }
-    h3 {
-        letter-spacing: 0.15em;
-        font-size: 16px;
-    }
-    h4 {
-        letter-spacing: 0.3em;
-    }
-    p {
-        font-size: 11px;
-    }
-    #card-front {
-        padding: 21px;
-    }
-    #card-front div {
-        display: flex;
-        align-items: center;
-    }
-    #title {
-        flex-flow: row nowrap;
-        justify-content: space-between;
-    }
-    #arrow {
-        width: 0; 
-        height: 0; 
-        border-top: 16px solid transparent;
-        border-bottom: 16px solid transparent; 
-        border-right:16px solid white; 
-        margin-right: 12px;
-    }
-    #number {
-        justify-content: center;
-    }
-    #date {
-        justify-content: center;
-    }
-    #date div:last-of-type p {
-        font-size: 14px;
-        margin-left: 8px;
-    }
-    #buttom {
-        justify-content: space-between;
-        align-items: flex-end;
-        position: relative;
-    }
-    #symbol {
-        position: relative;
-        background-color: #000;
-        margin: -8px;
-    }
-    #symbol div {
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        position: absolute;
-        bottom: -12px;
-    }
-    #red {
-        background-color: red;
-        right: 21px;
-        z-index: 3;
-    }
-    #orange {
-        background-color: orange; 
-        right: 0px;
+<script>
+    const form = document.querySelector('form');
+        function debounce(func, delay) {
+        let timeoutId;
+        return function (...args) {
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+        }
+        timeoutId = setTimeout(() => {
+            func.apply(null, args);
+        }, delay);
+        };
     }
 
-    #black {
-        width: 100%;
-        height: 40px;
-        background-color: #000;
-        margin-top: 24px;
+    form.addEventListener( 'input',debounce((event) => {
+        const input = event.target;
+        const id = input.id;
+        const display = document.querySelector(`#display-${id}`);
+        if (display) {
+            const pattern = input.getAttribute('pattern');
+            const regex = new RegExp(pattern);
+            if (regex.test(input.value)) {
+                display.textContent = input.value;
+            } else {
+                alert("Please recheck your information");
+        }
     }
-    #mark {
-        display: flex;
-        margin-top: 8px;
-        align-items: center;
-    }
-    #line {
-        width: 80%;
-        background-color: #ccc;
-    }
-    #mark hr {
-        margin: 2px 0px;
-        border: 0.2px solid grey;
-    }
-    #cvc-box {
-        width: 40px;
-        height:26px;
-        background-color: #fff;
-        color:#000;
-    }
-    #cvc-box p {
-        font-size: 14px;
-        margin: 6px;
-    }
-    .details {
-        padding: 0px 21px;
-    }
-
-    form {
-        width: 360px;
-        margin: 40px auto;
-    }
-    
-    input , label {
-        display: block;
-        width: 100%;
-        color: darkgray;
-    }
-    input {
-        background-color: transparent;
-        border: none;
-        border-bottom: 1px solid darkgrey;
-        height: 40px;
-        margin-bottom: 22px;
-    }
-    button {
-        font-family: serif;
-        font-size: 18px;
-        width: 100%;
-        height: 54px;
-        border-radius: 8px;
-        background-color: #5d90e2;
-        color: #fff;
-        border: none;
-        margin: auto;
-    }
-</style>
+    }, 1000)
+    );
+</script>

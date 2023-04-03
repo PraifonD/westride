@@ -70,7 +70,7 @@
             justify-content: center;
         }
         #date div {
-            width: 40px;
+            width: 50px;
             overflow: hidden;
         }
         #date div:last-of-type p {
@@ -242,11 +242,21 @@
             const pattern = input.getAttribute('pattern');
             const regex = new RegExp(pattern);
             if (regex.test(input.value)) {
-                display.textContent = input.value;
+                if (id == 'card-number') {
+                    let val = input.value;
+                    let valAr = val.split('');
+                        valAr.splice(4,0," ");
+                        valAr.splice(9,0," ");
+                        valAr.splice(13,0," ");
+                    let newFormat = valAr.join('');
+                    display.textContent = newFormat;
+                } else {
+                    display.textContent = input.value;
+                }
             } else {
                 alert("Please recheck your information");
         }
     }
-    }, 1000)
+    }, 800)
     );
 </script>

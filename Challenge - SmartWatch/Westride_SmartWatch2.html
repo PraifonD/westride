@@ -84,8 +84,7 @@
         }
 
         #marker-hr svg circle:nth-child(2),
-        #marker-min svg circle:nth-child(2) {
-            stroke: aquamarine;      
+        #marker-min svg circle:nth-child(2) {   
             transition: ease;   
         }
         #marker-hr svg circle:nth-child(2) {
@@ -160,8 +159,17 @@
         let currentDate = new Date();
             let currentHour = currentDate.getHours();
             let currentMinute = currentDate.getMinutes();
-        
-        currentHour = (currentHour > 10) ?  currentHour-12 : currentHour;
+
+        if (currentHour > 12) {
+            currentHour = currentHour-12;
+            markerHr.style.stroke="aquamarine";
+            markerMin.style.stroke="aquamarine";
+        } else {
+            currentHour = currentHour;
+            markerHr.style.stroke="salmon";
+            markerMin.style.stroke="tomato";
+            
+        }
 
         markerMin.style.strokeDashoffset = 601 - (currentMinute * 601/60);
         markerHr.style.strokeDashoffset = 660  - (currentHour * 660/12);

@@ -21,22 +21,23 @@
             width: 230px;
             height: 230px;
             background-color: rgb(28, 28, 30);
-            border-radius: 20px;
+            border-radius: 24px;
             color: #fff;
         }
         #watch-border {
             width: 250px;
             height: 250px;
             background-color: #595959;
-            border-radius: 20px;
+            border-radius: 28px;
         }
-        .dotted {
-            width: 200px;
-            height: 200px;
+        .wrapper {
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            border: 4px white dotted;
+            border: none;
             display: flex;
             flex-flow: column;
+            z-index: 99;
         }
         p {
             margin: 4px;
@@ -46,12 +47,73 @@
             font-size: 2.2em;
             font-weight: 600;
         }
+
+        /* Marker Hour */
+        #marker-hr {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            position: absolute;
+        }
+        #marker-min {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            position: absolute;
+        } 
+        #marker-hr svg,
+        #marker-min svg {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+        #marker-hr svg circle,
+        #marker-min svg circle {
+            width: 100%;
+            height: 100%;
+            fill: transparent;
+            stroke: black;
+            transform: translate(2%,2%);
+        }
+        #marker-hr svg circle {
+            stroke-width: 4px;
+        }
+        #marker-min svg circle {
+            stroke-width: 2px;
+        }
+
+        #marker-hr svg circle:nth-child(2),
+        #marker-min svg circle:nth-child(2) {
+            stroke: aquamarine;      
+            transition: ease;   
+        }
+        #marker-hr svg circle:nth-child(2) {
+            stroke-dasharray: 660;
+        }
+        #marker-min svg circle:nth-child(2) {
+            stroke-dasharray: 601;
+        }
+        
+
     </style>
 </head>
 <body> 
     <div id="watch-border">
         <div id="watch">
-            <div class="dotted">
+            <div id="marker-hr">
+                <svg>
+                    <circle cx="48%" cy="48%" r="48%"></circle>
+                    <circle id="marker-hr-indicator" cx="48%" cy="48%" r="48%" stroke-linecap="round"></circle>
+                </svg>
+            </div>
+            <div id="marker-min">
+                <svg>
+                    <circle cx="48%" cy="48%" r="48%"></circle>
+                    <circle id="marker-min-indicator" cx="48%" cy="48%" r="48%" stroke-linecap="round"></circle>
+                </svg>
+            </div>
+            <div class="wrapper">
                 <p id="date"></p>
                 <p id="time"></p>
             </div>
@@ -90,9 +152,25 @@
         time.textContent = timeString;
     }
 
-    setInterval(function () {
-    updateTime()
-    }, 1000);
+    function updateMarker () {
+        //update Marker
+        let markerMin = document.getElementById('marker-min-indicator');
+        let markerHr = document.getElementById('marker-hr-indicator');
 
+        let currentDate = new Date();
+            let currentHour = currentDate.getHours();
+            let currentMinute = currentDate.getMinutes();
+        
+        currentHour = (currentHour > 10) ?  currentHour-12 : currentHour;
+
+        markerMin.style.strokeDashoffset = 601 - (currentMinute * 601/60);
+        markerHr.style.strokeDashoffset = 660  - (currentHour * 660/12);
+    }
+
+    setInterval(function () {
+        updateTime();
+        updateMarker();
+    }, 1000);   
+    
 </script>
 </html>
